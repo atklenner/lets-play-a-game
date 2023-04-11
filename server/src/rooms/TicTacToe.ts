@@ -2,7 +2,7 @@ import { Room, Client } from "colyseus";
 import { Dispatcher } from "@colyseus/command";
 import TicTacToeState from "./schema/TicTacToeState";
 import { Message } from "../../../types/messages";
-import PlayerSelectionCommand from "../commands/PlayerSelectionCommand";
+import TTTPlayerSelectionCommand from "../commands/ticTacToe/TTTPlayerSelectionCommand";
 import { GameState } from "../../../types/gameState";
 
 export default class TicTacToe extends Room<TicTacToeState> {
@@ -13,7 +13,7 @@ export default class TicTacToe extends Room<TicTacToeState> {
     this.setState(new TicTacToeState());
 
     this.onMessage(Message.PlayerSelection, (client, message) => {
-      this.dispatcher.dispatch(new PlayerSelectionCommand(), {
+      this.dispatcher.dispatch(new TTTPlayerSelectionCommand(), {
         client,
         index: message.index,
       });
