@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev-client": "vite serve ./client",
-    "dev-server": "ts-node-dev --respawn --transpile-only server/src/index.ts",
+    "dev-server": "ts-node-dev --respawn --transpile-only --project server/tsconfig.json server/src/index.ts",
     "build-client": "tsc && vite build ./client",
     "build-server": "npm run clean && tsc && node node_modules/copyfiles/copyfiles package.json ./lib && node node_modules/copyfiles/copyfiles arena.env ./lib",
     "preview": "vite preview",
