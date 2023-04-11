@@ -1,6 +1,7 @@
 import Bootstrap from "../scenes/Bootstrap";
 import reactStore from "../services/zustand";
 import phaserGame from "../PhaserGame";
+import { Game } from "../../../types/games";
 
 export default function PickAGame() {
   const { togglePickGame, toggleGameOver } = reactStore();
@@ -12,9 +13,7 @@ export default function PickAGame() {
   return (
     <>
       <h1>Let's Play a Game!</h1>
-      <button onClick={() => handleClick("tic-tac-toe-game")}>
-        Tic-Tac-Toe
-      </button>
+      <button onClick={() => handleClick(Game.TicTacToe)}>Tic-Tac-Toe</button>
       <button>Uno</button>
       <button>Create a Room</button>
     </>
