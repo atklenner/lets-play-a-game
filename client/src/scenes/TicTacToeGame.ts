@@ -1,13 +1,13 @@
 import Phaser from "phaser";
 import type Server from "../services/TicTacToeServer";
 import ITicTacToeState, { Cell } from "../../../types/ITicTacToeState";
-import { IGameOverSceneData, IGameSceneData } from "../../../types/scene";
+import { IGameSceneData } from "../../../types/scene";
 import { GameState } from "../../../types/gameState";
 import { Game } from "../../../types/games";
 
 export default class TicTacToeGame extends Phaser.Scene {
   private server?: Server;
-  private onGameOver?: (data: IGameOverSceneData) => void;
+  private onGameOver?: (winner: boolean) => void;
   private cells: { display: Phaser.GameObjects.Rectangle; value: Cell }[] = [];
   private gameStateText?: Phaser.GameObjects.Text;
 
@@ -110,7 +110,7 @@ export default class TicTacToeGame extends Phaser.Scene {
         return;
       }
 
-      this.onGameOver({ winner: this.server?.playerIndex === playerIndex });
+      this.onGameOver(this.server?.playerIndex === playerIndex);
     });
   }
 

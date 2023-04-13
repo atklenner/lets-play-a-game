@@ -5,5 +5,5 @@ export interface IGameOverSceneData {
 
 export interface IGameSceneData {
   server: any;
-  onGameOver: (data: IGameOverSceneData) => void;
+  onGameOver: (winner: boolean) => void;
 }
