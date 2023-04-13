@@ -21,4 +21,5 @@ button {
   border-radius: 1rem;
 
   background-color: hsl(0, 0%, 100%);
+  text-align: center;
 }
