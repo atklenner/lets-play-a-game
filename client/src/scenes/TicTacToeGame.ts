@@ -29,7 +29,7 @@ export default class TicTacToeGame extends Phaser.Scene {
       throw new Error("server instance missing");
     }
 
-    await server.join();
+    await server.joinTicTacToe();
 
     server.onceStateChanged(this.createBoard, this);
   }

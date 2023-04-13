@@ -5,8 +5,9 @@ import { GameState } from "../../../types/gameState";
 import { Schema } from "@colyseus/schema";
 import { Message } from "../../../types/messages";
 import { Events } from "../../../types/events";
+import { Game } from "../../../types/games";
 
-export default class Server {
+export default class TicTacToeServer {
   private client: Client;
   private events: Phaser.Events.EventEmitter;
 
@@ -29,8 +30,8 @@ export default class Server {
     this.events = new Phaser.Events.EventEmitter();
   }
 
-  async join() {
-    this.room = await this.client.joinOrCreate<ITicTacToeState>("tic-tac-toe");
+  async joinTicTacToe() {
+    this.room = await this.client.joinOrCreate<ITicTacToeState>(Game.TicTacToe);
 
     this.room?.onMessage(
       Message.PlayerIndex,
