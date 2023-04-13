@@ -1,10 +1,11 @@
 import Phaser from "phaser";
 import TicTacToeServer from "../services/TicTacToeServer";
+import { emitter, onGamePick, onGameRestart } from "../services/events";
+import { Game } from "../../../types/games";
 
 export default class Bootstrap extends Phaser.Scene {
-  private toggleGameOver: () => void;
   private server!: TicTacToeServer;
-  private currentGame: string = "";
+  private currentGame: Game = Game.TicTacToe;
 
   constructor() {
     super("bootstrap");
@@ -12,20 +13,22 @@ export default class Bootstrap extends Phaser.Scene {
 
   init() {
     this.server = new TicTacToeServer();
+    onGamePick((game: Game) => this.createNewGame(game));
+    onGameRestart(() => this.handleRestart());
   }
 
   create() {
     this.scene.launch("starfield");
   }
 
-  private handleGameOver = () => {
+  private handleGameOver = (winner: boolean) => {
     this.server.leave();
     this.scene.stop(this.currentGame);
     this.scene.launch("starfield");
-    this.toggleGameOver();
+    emitter.emit("gameOver", winner);
   };
 
-  handleRestart = () => {
+  private handleRestart = () => {
     this.scene.stop("starfield");
     this.scene.launch(this.currentGame, {
       server: this.server,
@@ -33,8 +36,7 @@ export default class Bootstrap extends Phaser.Scene {
     });
   };
 
-  createNewGame(gameId: string, toggleGameOver: () => void) {
-    this.toggleGameOver = toggleGameOver;
+  private createNewGame(gameId: Game) {
     this.currentGame = gameId;
     this.scene.stop("starfield");
     this.scene.launch(gameId, {

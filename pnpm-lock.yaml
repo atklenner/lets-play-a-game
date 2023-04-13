@@ -19,6 +19,7 @@ specifiers:
   cors: ^2.8.5
   express: ^4.16.4
   mocha: ^9.0.2
+  nanoevents: ^7.0.1
   phaser: ^3.55.2
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -38,6 +39,7 @@ dependencies:
   colyseus.js: 0.14.13
   cors: 2.8.5
   express: 4.18.2
+  nanoevents: 7.0.1
   phaser: 3.55.2
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1879,6 +1881,11 @@ packages:
   /nanoevents/5.1.13:
     resolution: {integrity: sha512-JFAeG9fp0QZnRoESHjkbVFbZ9BkOXkkagUVwZVo/pkSX+Fq1VKlY+5og/8X9CYc6C7vje/CV+bwJ5M2X0+IY9Q==}
     engines: {node: '>=6.0.0'}
+
+  /nanoevents/7.0.1:
+    resolution: {integrity: sha512-o6lpKiCxLeijK4hgsqfR6CNToPyRU3keKyyI6uwuHRvpRTbZ0wXw51WRgyldVugZqoJfkGFrjrIenYH3bfEO3Q==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+    dev: false
 
   /nanoid/2.1.11:
     resolution: {integrity: sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==}

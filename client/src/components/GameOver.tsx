@@ -1,12 +1,10 @@
 import reactStore from "../services/zustand";
-import phaserGame from "../PhaserGame";
-import Bootstrap from "../scenes/Bootstrap";
+import { emitter } from "../services/events";
 
 export default function GameOver() {
-  const { toggleGameOver, togglePickGame } = reactStore();
+  const { toggleGameOver, togglePickGame, winner } = reactStore();
   const handlePlayAgain = () => {
-    const scene = phaserGame.scene.keys.bootstrap as Bootstrap;
-    scene.handleRestart();
+    emitter.emit("gameRestart");
     toggleGameOver();
   };
   const handleDifGame = () => {
@@ -15,7 +13,7 @@ export default function GameOver() {
   };
   return (
     <>
-      <h1>You lost, or won, whatever...</h1>
+      <h1>{winner ? "You Won!" : "You LOST!"}</h1>
       <button onClick={handlePlayAgain}>Play Again?</button>
       <button onClick={handleDifGame}>Pick a Different Game</button>
     </>

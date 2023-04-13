@@ -20,6 +20,7 @@
     "colyseus.js": "^0.14.13",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "nanoevents": "^7.0.1",
     "phaser": "^3.55.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

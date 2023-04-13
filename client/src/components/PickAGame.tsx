@@ -1,15 +1,14 @@
-import Bootstrap from "../scenes/Bootstrap";
 import reactStore from "../services/zustand";
-import phaserGame from "../PhaserGame";
 import { Game } from "../../../types/games";
+import { emitter } from "../services/events";
 
 export default function PickAGame() {
-  const { togglePickGame, toggleGameOver } = reactStore();
-  const handleClick = (gameId: string) => {
-    const scene = phaserGame.scene.keys.bootstrap as Bootstrap;
-    scene.createNewGame(gameId, () => toggleGameOver());
+  const { togglePickGame } = reactStore();
+  const handleClick = (game: Game) => {
+    emitter.emit("gamePick", game);
     togglePickGame();
   };
+
   return (
     <>
       <h1>Let's Play a Game!</h1>
